@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function deepCopyAsync(obj) {
+    return new Promise((resolve, reject) => {
+        // Check if the argument is an object
+        if (typeof obj !== 'object' || obj === null) {
+            // Reject if the argument is not an object
+            reject(new Error('The argument must be an object'));
+        } else {
+            // Use JSON.stringify and JSON.parse for deep copy
+            try {
+                const copiedObject = JSON.parse(JSON.stringify(obj));
+                // Resolve with the copied object
+                resolve(copiedObject);
+            } catch (error) {
+                // Reject if an error occurs during deep copy
+                reject(new Error('Error during deep copy'));
+            }
+        }
+    });
+}
+
+// Example usage:
+const originalObject = {
+    key1: 'value1',
+    key2: {
+        nestedKey: 'nestedValue'
+    }
+};
+
+deepCopyAsync(originalObject)
+    .then(copiedObject => {
+        console.log('Deep copy successful:', copiedObject);
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
+    </script>
+</body>
+</html>

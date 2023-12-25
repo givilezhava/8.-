@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+function expo(base, power, callback) {
+    // Base case: power is 0, return 1
+    if (power === 0) {
+        return 1;
+    }
+    
+    // Recursive case: multiply base with expo function called with reduced power
+    let result = base * expo(base, power - 1, callback);
+    
+    // Apply callback function on the result
+    result = callback(result);
+    
+    return result;
+}
+
+// Example usage:
+const baseNumber = 5;
+const powerNumber = 3;
+
+// Define a simple callback function (identity function in this case)
+function identityCallback(x) {
+    return x;
+}
+
+// Calculate 5^3 and apply identity callback
+const result = expo(baseNumber, powerNumber, identityCallback);
+
+console.log(`${baseNumber}  raised to the power of ${powerNumber} is: ${result}`);
+
+
+
+
+    </script>
+</body>
+</html>
